@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 24 2023 г., 08:20
+-- Время создания: Мар 24 2023 г., 09:33
 -- Версия сервера: 10.4.27-MariaDB
 -- Версия PHP: 8.2.0
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `izīrēšana` (
   `izīrēšana_id` int(11) NOT NULL,
-  `Pilnais_vārds` int(11) NOT NULL,
-  `mob_tālrunis` int(11) NOT NULL,
-  `Auto_modelis` int(11) NOT NULL,
-  `īrēs_laiks` varchar(20) DEFAULT NULL
+  `Pilnais_vārds` varchar(128) NOT NULL,
+  `Mob_tālrunis` int(50) NOT NULL,
+  `Auto_model` varchar(100) NOT NULL,
+  `Īres_laiks` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -43,10 +43,10 @@ CREATE TABLE `izīrēšana` (
 
 CREATE TABLE `mašīnas_info` (
   `info_id` int(11) NOT NULL,
-  `modelis` varchar(128) NOT NULL,
-  `gads` int(5) NOT NULL,
-  `dzinējs` varchar(50) NOT NULL,
-  `transmisijas_kārba` varchar(50) NOT NULL
+  `Modelis` varchar(128) NOT NULL,
+  `Gads` int(5) NOT NULL,
+  `Dzinējs` varchar(5) NOT NULL,
+  `Transmisijas_kārba` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
