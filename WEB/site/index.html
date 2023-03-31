@@ -15,13 +15,19 @@
         <nav class="menu">
             <ul>
                 <li class="menu-item">
-                    <a href="#">Главная</a>
+                    <a href="#">Home</a>
                 </li>
                 <li class="menu-item">
-                    <a href="#Cars">Автомобили</a>
+                    <a href="#Cars">Cars</a>
                 </li>
                 <li class="menu-item">
-                    <a href="#Prices">Бронирование авто</a>
+                    <a href="#Prices">Book a car</a>
+                </li>
+                <li class="menu-item">
+                    <a href="../LogReg/login.php">login</a>
+                </li>
+                <li class="menu-item">
+                    <a href="../LogReg/registration.php">register</a>
                 </li>
             </ul>
 
@@ -294,12 +300,43 @@
         <div class="price-text">
             Заполните данные, и мы перезвоним вам для уточнения всех деталей бронирования
         </div>
-        <form action="" class="price-form">
-            <input type="text" class="price-input" id="name" placeholder="Ваше Имя">
-            <input type="text" class="price-input" id="phone" placeholder="Ваш Телефон">
-            <input type="text" class="price-input" id="car" placeholder="Автомобиль, который вас интересует">
-            <button class="button" type="button" id="Price-action">Узнать цену</button>
+        <form action="" class="price-form" method="post">
+            <input type="text" class="price-input" id="name" placeholder="Ваше Имя" name="name">
+            <input type="text" class="price-input" id="phone" placeholder="Ваш Телефон" name="phone">
+            <input type="text" class="price-input" id="car" placeholder="Автомобиль, который вас интересует" name="car">
+            <input type="date" class="price-input" id="date" placeholder="date" name="date">
+            <button class="button" type="submit" id="Price-action">Узнать цену</button>
         </form>
+
+        <?php
+        if (empty($_POST) === false) {
+
+            $nameform = $_POST['name'];
+
+            // filter_var()
+
+            $phoneform = $_POST['phone'];
+            $carform = $_POST['car'];
+            $dateform = $_POST['date'];
+
+
+            require '../LogReg/database.php';
+
+            $sql = 'INSERT INTO izīrēšana (name, phone, car_model, rented_at)
+                    VALUES (?, ?, ?, ?)';
+
+
+            $statement = $conn->prepare($sql);
+
+            $statement->execute([$nameform, $phoneform, $carform, $dateform]);
+
+            if ($statement->errorCode()) {
+                echo $statement->errorCode();
+            }
+
+        }
+        ?>
+
         <img src="img/rolls.png" alt="Rolls" class="image">
     </div>
 </section>
